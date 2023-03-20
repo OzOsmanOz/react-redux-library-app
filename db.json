@@ -1,0 +1,54 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "name": "Bab-ı Esrar",
+      "author": "Ahmet Ümit",
+      "isbn": "11111",
+      "categoryId": "2"
+    },
+    {
+      "id": "2",
+      "name": "Aşk",
+      "author": "Elif Şafak",
+      "isbn": "11112",
+      "categoryId": "1"
+    },
+    {
+      "id": "1678979885486",
+      "name": "Semerkant",
+      "author": "Amin Maalouf",
+      "categoryId": "1",
+      "isbn": "11113"
+    },
+    {
+      "id": "1678979943914",
+      "name": "Denemeler",
+      "author": "Montaigne",
+      "categoryId": "3",
+      "isbn": "11114"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Roman"
+    },
+    {
+      "id": "2",
+      "name": "Hikaye"
+    },
+    {
+      "id": "3",
+      "name": "Deneme"
+    },
+    {
+      "id": "1679294614244",
+      "name": "Şiir"
+    },
+    {
+      "id": "1679294622845",
+      "name": "Öykü"
+    }
+  ]
+}
