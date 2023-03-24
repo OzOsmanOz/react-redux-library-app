@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import HomePage from "./page/HomePage";
@@ -7,9 +7,11 @@ import actionTypes from "./redux/actions/actionTypes";
 import api from "./Api/api";
 import urls from "./Api/urls";
 import AddBookPage from "./page/AddBookPage";
+import Loading from "./components/Loading";
 
 function App() {
   const dispatch = useDispatch();
+  const { categoriesState, booksState } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_START });
@@ -47,6 +49,9 @@ function App() {
         console.log("books get err", err);
       });
   }, []);
+
+  if (booksState.success === false || categoriesState.success === false)
+    return <Loading />;
 
   return (
     <BrowserRouter>

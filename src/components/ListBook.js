@@ -1,13 +1,60 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import api from "../Api/api";
+import urls from "../Api/urls";
+import actionTypes from "../redux/actions/actionTypes";
 import Loading from "./Loading";
+import Modal from "./Modal";
 
 const ListBook = () => {
-  const { booksState, categoriesState } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { categoriesState } = useSelector((state) => state);
+  const [books, setBooks] = useState(null);
+  const [didUpdate, setDidUpdate] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [deletedBookId, setDeletedBookId] = useState("");
+  const [deletedBookName, setDeletedBookName] = useState("");
+  // console.log("books", books);
+  // console.log("categoriesState", categoriesState);
 
-  if (booksState.success !== true || categoriesState.success !== true)
-    return <Loading />;
+  useEffect(() => {
+    dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_START });
+    api
+      .get(urls.books)
+      .then((res) => {
+        dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS });
+        setBooks(res.data);
+      })
+      .catch((err) => {
+        console.log("books get err", err);
+        dispatch({
+          type: actionTypes.booksActions.FETCH_BOOKS_FAIL,
+          payload: "server hatası",
+        });
+      });
+  }, [didUpdate]);
+
+  const handleDelete = (id) => {
+    const filteredBookDelete = books.filter((book) => book.id !== id);
+
+    dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_START });
+    api
+      .delete(`${urls.books}/${id}`)
+      .then((res) => {
+        dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS });
+        setDidUpdate(!didUpdate);
+      })
+      .catch((err) => {
+        console.log("books delete err", err);
+        dispatch({
+          type: actionTypes.booksActions.FETCH_BOOKS_FAIL,
+          payload: "server hatası",
+        });
+      });
+  };
+
+  if (!books || !categoriesState.categories) return <Loading />;
 
   return (
     <div>
@@ -16,6 +63,9 @@ const ListBook = () => {
           <Link
             to={"/add-book"}
             className="btn btn-sm btn-success fw-semibold py-0"
+            style={{
+              backgroundColor: "#408E91",
+            }}
           >
             Add Book
           </Link>
@@ -31,7 +81,7 @@ const ListBook = () => {
             </tr>
           </thead>
           <tbody>
-            {booksState.books.map((book) => {
+            {books.map((book) => {
               const findCategory = categoriesState.categories.find(
                 (cat) => cat.id === book.categoryId
               );
@@ -43,10 +93,22 @@ const ListBook = () => {
                   <td className="text-center">{findCategory.name}</td>
                   <td className="text-center">{book.isbn}</td>
                   <td className="text-center">
-                    <button className="btn btn-sm btn-danger py-0">
-                      <i className="fa-solid fa-trash"></i>
+                    <button
+                      onClick={() => {
+                        // handleDelete(book.id);
+                        setShowModal(true);
+                        setDeletedBookId(book.id);
+                        setDeletedBookName(book.name);
+                      }}
+                      className="btn btn-sm py-0 text-white"
+                      style={{ backgroundColor: "#E49393" }}
+                    >
+                      <i className="fa-solid fa-trash "></i>
                     </button>
-                    <button className="btn btn-sm btn-primary py-0 ms-2">
+                    <button
+                      className="btn btn-sm py-0 ms-2 text-white"
+                      style={{ backgroundColor: "#4AA3BA" }}
+                    >
                       <i className="fa-solid fa-edit"></i>
                     </button>
                   </td>
@@ -55,6 +117,14 @@ const ListBook = () => {
             })}
           </tbody>
         </table>
+        {showModal && (
+          <Modal
+            onCancel={() => setShowModal(false)}
+            onConfirm={() => handleDelete(deletedBookId)}
+            title={deletedBookName}
+            explanation="Are you sure you want to delete the book?"
+          />
+        )}
       </div>
     </div>
   );
