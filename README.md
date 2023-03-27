@@ -1,3 +1,19 @@
+
+
+https://user-images.githubusercontent.com/107813778/228028823-b132e37f-7b08-4a75-b1e3-157a944bf225.mov
+
+## Used technologies
+![htmlicon](https://user-images.githubusercontent.com/107813778/206437359-a00e2847-d363-4e31-8f16-debac10b4498.png)
+![cssicon](https://user-images.githubusercontent.com/107813778/206437354-328a59d7-6082-4831-955b-38de2035ee2a.png)
+![bootstrapicon](https://user-images.githubusercontent.com/107813778/206437351-3847eaba-6b04-423e-8e92-59a6707a4429.png)
+![jsicon](https://user-images.githubusercontent.com/107813778/206437362-28f878e9-b0f5-412f-99c2-bdc6af76a9fc.png)
+![reacticon](https://user-images.githubusercontent.com/107813778/206437364-37fe1387-a98d-4f48-bc4e-6a4ff5d8619b.png)
+![reduxicon](https://user-images.githubusercontent.com/107813778/206437375-1f18f731-8a0e-44ff-806b-5c326f6877a6.png)
+![routericon](https://user-images.githubusercontent.com/107813778/206437368-b75da2bc-014b-4df5-9d42-b20cd826545c.jpg)
+![jsonicon](https://user-images.githubusercontent.com/107813778/206437378-d7bdba0a-d0af-4e95-9536-2af431f0af7d.png)
+![axiosicon](https://user-images.githubusercontent.com/107813778/206437372-e03c0ac8-a4f7-4aef-b911-63c5654a24c1.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
