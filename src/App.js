@@ -9,6 +9,9 @@ import urls from "./Api/urls";
 import AddBookPage from "./page/AddBookPage";
 import Loading from "./components/Loading";
 import EditBookPage from "./page/EditBookPage";
+import CategoriesPage from "./page/CategoriesPage";
+import AddCategoriesPage from "./page/AddCategoryPage";
+import AddCategoryPage from "./page/AddCategoryPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +63,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/add-book" element={<AddBookPage />} />
         <Route path="/edit-book/:bookId" element={<EditBookPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="add-category" element={<AddCategoryPage />} />
       </Routes>
     </BrowserRouter>
   );

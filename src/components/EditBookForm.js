@@ -11,7 +11,6 @@ const EditBookForm = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const { categoriesState } = useSelector((state) => state);
-  const [allBooks, setAllBooks] = useState(null);
   const [editBookForm, setEditBookForm] = useState({
     id: params.bookId,
     name: "",
@@ -20,15 +19,10 @@ const EditBookForm = () => {
     categoryId: "",
   });
 
-  console.log("editBookForm", editBookForm);
-  console.log("allBooks", allBooks);
-
   useEffect(() => {
     api
       .get(urls.books)
       .then((res) => {
-        console.log("editBook get res", res);
-        setAllBooks(res.data);
         const findEditBook = res.data.find((book) => book.id === params.bookId);
         setEditBookForm(findEditBook);
       })
@@ -56,14 +50,6 @@ const EditBookForm = () => {
       alert("kitap adı , yazar adı ve kategori boş olamaz");
       return;
     }
-    const hasBooks = allBooks.find(
-      (item) => item.name.toLowerCase() === editBookForm.name.toLowerCase()
-    );
-    console.log("hasBooks", hasBooks);
-    if (hasBooks) {
-      alert("Bu kitap zaten kayıtlı");
-      return;
-    }
 
     const editBook = {
       id: params.bookId,
@@ -77,7 +63,6 @@ const EditBookForm = () => {
     api
       .put(`${urls.books}/${params.bookId}`, editBook)
       .then((res) => {
-        console.log("editBook put res", res.data);
         dispatch({
           type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS,
           payload: editBook,

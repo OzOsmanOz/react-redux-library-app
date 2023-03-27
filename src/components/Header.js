@@ -31,7 +31,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/categories"} className="nav-link text-white ms-3 ">
+                <Link to={"/categories"} className="nav-link text-white ms-3">
                   Categories
                 </Link>
               </li>

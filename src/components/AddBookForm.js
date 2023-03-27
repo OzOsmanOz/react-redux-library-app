@@ -18,9 +18,6 @@ const AddBookForm = () => {
     isbn: "",
   });
 
-  console.log("booksState", booksState);
-  console.log("booksForm", booksForm);
-
   const handleAddBook = (e) => {
     e.preventDefault();
 

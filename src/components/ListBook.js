@@ -21,7 +21,6 @@ const ListBook = () => {
     api
       .get(urls.books)
       .then((res) => {
-        console.log("get book res", res);
         dispatch({
           type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS,
           payload: res.data,

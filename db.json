@@ -27,6 +27,27 @@
       "author": "Montaigne",
       "categoryId": "3",
       "isbn": "11114"
+    },
+    {
+      "id": "1679912508648",
+      "name": "asdf asdf",
+      "author": "asdf",
+      "categoryId": "1679294614244",
+      "isbn": "1234"
+    },
+    {
+      "id": "1679912533942",
+      "name": "qwer qwer",
+      "author": "qwer",
+      "isbn": "3456",
+      "categoryId": "1679294622845"
+    },
+    {
+      "id": "1679925375014",
+      "name": "zxcv zxcv zxcv",
+      "author": "zxcv",
+      "isbn": "5765",
+      "categoryId": "1679294622845"
     }
   ],
   "categories": [
@@ -49,6 +70,10 @@
     {
       "id": "1679294622845",
       "name": "Öykü"
+    },
+    {
+      "id": "1679918110249",
+      "name": "Tarih"
     }
   ]
 }
