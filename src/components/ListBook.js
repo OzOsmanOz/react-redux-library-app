@@ -15,15 +15,17 @@ const ListBook = () => {
   const [showModal, setShowModal] = useState(false);
   const [deletedBookId, setDeletedBookId] = useState("");
   const [deletedBookName, setDeletedBookName] = useState("");
-  // console.log("books", books);
-  // console.log("categoriesState", categoriesState);
 
   useEffect(() => {
     dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_START });
     api
       .get(urls.books)
       .then((res) => {
-        dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS });
+        console.log("get book res", res);
+        dispatch({
+          type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS,
+          payload: res.data,
+        });
         setBooks(res.data);
       })
       .catch((err) => {
@@ -36,13 +38,14 @@ const ListBook = () => {
   }, [didUpdate]);
 
   const handleDelete = (id) => {
-    const filteredBookDelete = books.filter((book) => book.id !== id);
-
     dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_START });
     api
       .delete(`${urls.books}/${id}`)
       .then((res) => {
-        dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS });
+        dispatch({
+          type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS,
+          payload: res.data,
+        });
         setDidUpdate(!didUpdate);
       })
       .catch((err) => {
@@ -85,7 +88,6 @@ const ListBook = () => {
               const findCategory = categoriesState.categories.find(
                 (cat) => cat.id === book.categoryId
               );
-
               return (
                 <tr key={book.id}>
                   <td>{book.name}</td>
@@ -105,12 +107,13 @@ const ListBook = () => {
                     >
                       <i className="fa-solid fa-trash "></i>
                     </button>
-                    <button
+                    <Link
+                      to={`/edit-book/${book.id}`}
                       className="btn btn-sm py-0 ms-2 text-white"
                       style={{ backgroundColor: "#4AA3BA" }}
                     >
                       <i className="fa-solid fa-edit"></i>
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               );

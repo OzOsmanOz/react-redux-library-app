@@ -18,13 +18,20 @@ const AddBookForm = () => {
     isbn: "",
   });
 
+  console.log("booksState", booksState);
+  console.log("booksForm", booksForm);
+
   const handleAddBook = (e) => {
     e.preventDefault();
+
     dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_START });
     api
       .post(urls.books, booksForm)
       .then((res) => {
-        dispatch({ type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS });
+        dispatch({
+          type: actionTypes.booksActions.FETCH_BOOKS_SUCCESS,
+          payload: booksForm,
+        });
         navigate("/");
       })
       .catch((err) => {

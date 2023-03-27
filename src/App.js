@@ -8,6 +8,7 @@ import api from "./Api/api";
 import urls from "./Api/urls";
 import AddBookPage from "./page/AddBookPage";
 import Loading from "./components/Loading";
+import EditBookPage from "./page/EditBookPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/add-book" element={<AddBookPage />} />
+        <Route path="/edit-book/:bookId" element={<EditBookPage />} />
       </Routes>
     </BrowserRouter>
   );
